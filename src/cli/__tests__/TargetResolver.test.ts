@@ -20,6 +20,18 @@ describe("TargetResolver", () => {
       expect(target?.ldrex_strex).toBe(ldrex_strex);
     });
 
+    it("gives esp32c5 RISC-V's 128-bit long double, where esp32 has 64", () => {
+      const c5 = TargetResolver.byName("esp32c5", NodeFileSystem.instance);
+      const esp32 = TargetResolver.byName("esp32", NodeFileSystem.instance);
+      expect(c5?.long_double_bits).toBe(128);
+      expect(esp32?.long_double_bits).toBe(64);
+      expect({ ...c5, name: "", long_double_bits: 0 }).toEqual({
+        ...esp32,
+        name: "",
+        long_double_bits: 0,
+      });
+    });
+
     it.each([
       { name: undefined, why: "no name given" },
       { name: "", why: "an empty name" },
@@ -64,6 +76,7 @@ describe("TargetResolver", () => {
           "avr",
           "arduino-uno",
           "esp32",
+          "esp32c5",
           "host",
         ]),
       );

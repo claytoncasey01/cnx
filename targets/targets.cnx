@@ -236,6 +236,33 @@ TargetDescription ESP32 <- {
     internal_identifier_chars: 63
 };
 
+// ESP32-C5: one RV32IMAC core, ILP32. From riscv32-esp-elf-gcc 14.2.0's
+// predefined macros. It differs from esp32 only in long double, which RISC-V
+// ILP32 makes 128 bits. No compiler in the test matrix checks it, so it names
+// no toolchain.
+TargetDescription ESP32C5 <- {
+    name: "esp32c5",
+    word_size: 32,
+    ldrex_strex: false,
+    basepri: false,
+    interrupt_mask: false,
+    char_bits: 8,
+    char_signed: false,
+    short_bits: 16,
+    int_bits: 32,
+    long_bits: 32,
+    long_long_bits: 64,
+    size_t_bits: 32,
+    pointer_bits: 32,
+    float_bits: 32,
+    double_bits: 64,
+    long_double_bits: 128,
+    big_endian: false,
+    short_enums: false,
+    external_identifier_chars: 31,
+    internal_identifier_chars: 63
+};
+
 // The build machine: x86-64 Linux, LP64
 TargetDescription HOST <- {
     name: "host",

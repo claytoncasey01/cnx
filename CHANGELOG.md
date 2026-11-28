@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- **An `esp32c5` target** for the ESP32-C5, a single RV32IMAC core. Its facts are esp32's except
+  `long double`, which is 128 bits on RISC-V ILP32 (64 on Xtensa). Like `esp32`, it names no
+  toolchain, so no compiler in the test matrix checks it.
+
 ### Changed
 
 - **ADR-111 (Safe Hardware Abstraction) is now ADR-072**: its target release moved from v2 to v1,
